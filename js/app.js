@@ -491,14 +491,14 @@ var MyCampusApp = {
 							if(!$rootScope.umalert) {
 								$rootScope.umalert = true;
 								navigator.notification.confirm(
-									'App Updates available. Update?', // message
+									'The Bryant Mobile app may not work as expected if you do not update to the latest version.', // message
 									onConfirm,            // callback to invoke with index of button pressed
 									'Update Manager',           // title
 									['Yes','No']         // buttonLabels
 								);
 							}
 						}else {
-							apprise("App Updates available. Update? ", {'verify':true, 'textYes':"Yes", 'textNo':"No"}, function(r) {
+							apprise("The Bryant Mobile app may not work as expected if you do not update to the latest version.", {'verify':true, 'textYes':"Yes", 'textNo':"No"}, function(r) {
 								if(r) {
 									//navigator.app.exitApp();
 									MyCampusApp.updateMetadata(tenant, url, $http, data, $route, $rootScope, $scope, $sce, logosDirPath, $compile);
