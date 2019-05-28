@@ -276,6 +276,7 @@ angular.module('myApp.controllers', []).
                     $route.reload();
                     $rootScope.$apply(function () {
                         $location.path("/home");
+			$route.reload();
                     });
                 });
                 $rootScope.homeDownloadCompleteAdded = true;
@@ -744,6 +745,7 @@ angular.module('myApp.controllers', []).
                         $route.reload();
                         $rootScope.$apply(function () {
                             $location.path("/home");
+			    $route.reload();
                         });
                     });
                     $rootScope.homeDownloadCompleteAdded = true;
