@@ -164,6 +164,7 @@ var MyCampusApp = {
                     $route.reload();
                         $rootScope.$apply(function () {
                             $location.path("/home");
+			    $route.reload();
                         });
                 },4000);
             }).error(function(data){
@@ -793,6 +794,7 @@ var MyCampusApp = {
                             $rootScope.$broadcast("onDownloadComplete", "Download Completed");
                             //alert ("Broadcast called..");
                             setTimeout(function() {
+				$route.reload();
                                 $.unblockUI();
                             },2000);
 						}catch(exce) {
