@@ -415,50 +415,7 @@
         }
       ]
     },
-    {
-      "id": 149513,
-      "name": "BryUACE",
-      "displayname": "ACE & The Writing Center",
-      "logo": "Bryant/BryUACE.png",
-      "logourl": "Bryant/BryUACE.png",
-      "description": "BryUACE",
-      "appFeatureType": "Secure Apps",
-      "roles": null,
-      "showInDock": false,
-      "showInHome": true,
-      "networkrequired": true,
-      "analytics": true,
-      "pages": 
-      [
-        {
-          "pageid": "BryUACE",
-          "pageTemplate": "<div><\/div>",
-          "pageprocessor": "function pageprocessorBryUACE(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n  var data1 = $compile($(pagedef.datatemplate))($scope);\r\n  var studentLingo = \"https://www.studentlingo.com/bryant\";\r\n  $(\"#appContent\").append(data1);\r\n  $scope.aboutUS = function() {\r\n    $location.path(\"/app/BryUACE/BryUACEPage2\");\r\n  }\r\n  $scope.services = function() {\r\n    $location.path(\"/app/BryUACE/BryUACEPage3\");\r\n  }\r\n  $scope.contactUs = function() {\r\n    $location.path(\"/app/BryUACE/BryUACEPage4\");\r\n  }\r\n  $scope.studentLingo = function() {\r\n    var iabRef = window.open(studentLingo, \"_system\", \"location=no,hidden=no,enableViewportScale=yes,clearcache=yes\");\r\n    var hideBlockUi = function() {\r\n      $.unblockUI();\r\n      iabRef.show();\r\n    };\r\n    var iabClose = function(data) {\r\n      $.unblockUI();\r\n      iabRef.removeEventListener(\"exit\", iabClose);\r\n      window.location.href = \"index.html#home\";\r\n    };\r\n    iabRef.addEventListener(\"exit\", iabClose);\r\n    var loadStop = function(data) {\r\n      hideBlockUi();\r\n      iabRef.removeEventListener(\"loadstop\", loadStop);\r\n    };\r\n    iabRef.addEventListener(\"loadstop\", loadStop);\r\n  }\r\n}",
-          "datatemplate": "<div>\r\n  <!--<img src=\"http://devlinuxxx8vm.bryant.edu/bry/u01/webdocs74/mobile/transparent_logo.png\"> -->\r\n  <h2 align=\"center\"><font color=\"#9CD4D4\"><br>ACE<br>and<br>The Writing Center<\/font><\/h2>\r\n  <br>\r\n<\/div>\r\n<div>\r\n  <a class=\"list-group-item active\" style=\"background:#9CD4D4;box-shadow:0 0 10px #000;margin-bottom:5px;margin-left:10px;margin-right:10px;font-size:16px;\" ng-click=\"aboutUS();\">\r\nAbout Us<span class=\"pull-right fa fa-chevron-right\"><\/span><\/a>\r\n  <a class=\"list-group-item active\" style=\"background:#9CD4D4;box-shadow:0 0 10px #000;margin-bottom:5px;margin-left:10px;margin-right:10px;font-size:16px;\" ng-click=\"services();\">\r\nACE & The Writing Center Services<span class=\"pull-right fa fa-chevron-right\"><\/span><\/a>\r\n  <a class=\"list-group-item active\" style=\"background:#9CD4D4;box-shadow:0 0 10px #000;margin-bottom:5px;margin-left:10px;margin-right:10px;font-size:16px;\" ng-click=\"contactUs();\">\r\nContact Us<span class=\"pull-right fa fa-chevron-right\"><\/span><\/a>\r\n  <a class=\"list-group-item active\" style=\"background:#9CD4D4;box-shadow:0 0 10px #000;margin-bottom:5px;margin-left:10px;margin-right:10px;font-size:16px;\" ng-click=\"studentLingo()\">\r\nStudentLingo<span class=\" pull-right fa fa-chevron-right \"><\/span><\/a>\r\n<\/div>"
-        },
-        {
-          "pageid": "BryUACEPage2",
-          "pageTemplate": "<div><\/div>",
-          "endpoint": "",
-          "pageprocessor": "function pageprocessorBryUACEPage2(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {var data1 = $compile($(pagedef.datatemplate))($scope);$(\"#appContent\").append(data1);}",
-          "datatemplate": "<div style=\"padding:10px; color:#000000;\">\r\n  <h1 style=\"text-align:center; text-decoration:underline;\">About Us<\/h1>\r\n  <p>You can find more information about us and register for our Workshops on our Blackboard course.<\/p>\r\n  <p>\r\n    The Academic Center for Excellence (ACE) is dedicated to empowering Bryant students to achieve their goals of academic success. It is no surprise, then, that Bryant’s most motivated students use ACE services, as they understand the connection between\r\n    their academic performance and their professional success. Last year, members of the ACE staff held over 20,000 appointments with Bryant students.\r\n  <\/p>\r\n  <p>\r\n    Our goal at ACE is to assist students to become self-reliant, independent, confident learners so that they may successfully meet the demands of their chosen academic curriculums. This is achieved through our internationally accredited peer tutoring program\r\n    and study skills instruction by our professional staff. This staff engages in a collaborative partnership with students to help them achieve their goals. Professional staff members, peer tutors, and faculty work together to foster a supportive learning\r\n    environment.\r\n  <\/p>\r\n<\/div>"
-        },
-        {
-          "pageid": "BryUACEPage3",
-          "pageTemplate": "<div><\/div>",
-          "datatemplate": "<div style=\"padding:10px; color:#000000;\">\r\n  <h1 style=\"text-align:center; text-decoration:underline;\">What can we help with?<\/h1>\r\n  <p>\r\n    Drop in to our Math, Accounting, Finance, Economics, and Reading & Writing Labs – no appointment necessary!\r\n  <\/p>\r\n  <p>\r\n    Schedule appointments with staff specialists in Math and Writing. Learning Specialists are also available for appointment to assist you with reading, note-taking, test preparation, test-taking, time management, and general learning assistance.\r\n  <\/p>\r\n  <p>\r\n    Schedule one-on-one half hour or hour appointments with peer tutors. Below is a list of subjects that ACE and the Writing Center offers tutoring in, with tutors specializing in content for specific courses. To book an appointment with a tutor in a course\r\n    from any of these subjects, please call or visit ACE!\r\n  <\/p>\r\n  <div style=\"display: flex;\">\r\n    <!-- Two Column Bulleted List -->\r\n    <ul>\r\n      <li>Applied Analytics<\/li>\r\n      <li>Accounting<\/li>\r\n      <li>Actuarial Mathematics<\/li>\r\n      <li>Business 400<\/li>\r\n      <li>Chinese<\/li>\r\n      <li>Communication<\/li>\r\n      <li>Economics<\/li>\r\n      <li>Finance<\/li>\r\n      <li>French<\/li>\r\n      <li>Global Studies<\/li>\r\n      <li>History<\/li>\r\n      <li>Information Systems<\/li>\r\n    <\/ul>\r\n    <ul>\r\n      <li>Italian<\/li>\r\n      <li>Literary and Cultural Studies<\/li>\r\n      <li>Legal Studies<\/li>\r\n      <li>Mathematics<\/li>\r\n      <li>Management<\/li>\r\n      <li>Marketing<\/li>\r\n      <li>Political Science<\/li>\r\n      <li>Psychology<\/li>\r\n      <li>Science<\/li>\r\n      <li>Sociology<\/li>\r\n      <li>Spanish<\/li>\r\n      <li>Writing<\/li>\r\n    <\/ul>\r\n  <\/div>\r\n<\/div>",
-          "endpoint": "",
-          "pageprocessor": "function pageprocessorBryUACEPage3(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {var data1 = $compile($(pagedef.datatemplate))($scope);$(\"#appContent\").append(data1);}"
-        },
-        {
-          "pageid": "BryUACEPage4",
-          "pageTemplate": "<div><\/div>",
-          "pageprocessor": "function pageprocessorBryUACEPage4(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {var data1 = $compile($(pagedef.datatemplate))($scope);$(\"#appContent\").append(data1);}",
-          "datatemplate": "<div style=\"padding:10px; color:#000000;\">\r\n  <h1 style=\"text-align:center; text-decoration:underline;\">Contact Us<\/h1>\r\n  <h3 style=\"text-align:center;\">ACE and the Writing Center<\/h3>\r\n  <p>\r\n    How to make an appointment:\r\n  <\/p>\r\n  <p>\r\n    Phone: <a href=\"tel:4012326746\">(401) 232-6746<\/a>\r\n  <\/p>\r\n  <p>\r\n    Or visit us on the first floor of the Unistructure in the Center for Teaching and Learning, across from Classrooms 243-245.\r\n  <\/p>\r\n  <p>\r\n    Hours:\r\n  <\/p>\r\n  <p>\r\n    Monday – Thursday: 10:00 am – 10:00 pm\r\n  <\/p>\r\n  <p>\r\n    Friday: 10:00 am – 2:00 pm\r\n  <\/p>\r\n  <p>\r\n    Sunday: 5:00 pm – 10:00 pm\r\n  <\/p>\r\n<\/div>",
-          "endpoint": ""
-        }
-      ]
-    },
+    
     {
       "id": 851,
       "name": "WAG",
