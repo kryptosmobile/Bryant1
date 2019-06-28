@@ -305,63 +305,7 @@
         }
       ]
     },
-    {
-      "id": 149288,
-      "name": "BryUCancelledClasses",
-      "displayname": "Cancelled Classes",
-      "logo": "Bryant/BryUCancelledClasses.png",
-      "logourl": "Bryant/BryUCancelledClasses.png",
-      "description": "BryUCancelledClasses",
-      "appFeatureType": "Secure Apps",
-      "roles": null,
-      "showInDock": false,
-      "showInHome": true,
-      "networkrequired": true,
-      "analytics": true,
-      "pages": 
-      [
         {
-          "pageid": "BryUCancelledClasses",
-          "pageTemplate": "<div><\/div>",
-          "pageprocessor": "function pageprocessorBryUCancelledClasses(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n  var data1 = $compile($(pagedef.datatemplate))($scope);\r\n  $(\"#appContent\").append(data1);\r\n  // This creates the loading screen\r\n  $.blockUI();\r\n  // Kryptos RSS reader if they stop supporting this we will need to find an alternative\r\n  var rssreaderUrl = \"https://kryptosda.kryptosmobile.com/kryptosds/rss/rssreader\";\r\n  var param = {\r\n    \"url\": pagedef.url\r\n  };\r\n  // After the page is loaded add today's date in a nice blue box.\r\n  $scope.$on('$viewContentLoaded', function() {\r\n    var options = {\r\n      weekday: 'long',\r\n      year: 'numeric',\r\n      month: 'long',\r\n      day: 'numeric'\r\n    };\r\n    $(\"#appContent\").prepend('<div id=\"today-date\">' + new Date().toLocaleString('en-US', options) + '<\/div>');\r\n  });\r\n  // Post to get the data from the reader/rss url\r\n  $http.post(rssreaderUrl, param, '').success(function(data, status, headers, config) {\r\n    // If the reader failed catch the exception and print out an error\r\n    try {\r\n      // There are no entries \r\n      if (data.feed.entries.length == 0) {\r\n        $.unblockUI();\r\n        $('#appContent').append('<p class=\"no-classes\">No classes are cancelled.<\/p>');\r\n      } else {\r\n        $scope.feeds = data.feed.entries;\r\n        $.unblockUI();\r\n      }\r\n    } catch {\r\n      $('#appContent').append('<p class=\"no-classes\">An issue has occured.<\/br> Please contact Laptop Central<\/br><a href=\"mailto:laptopcentral@bryant.edu\" style=\"font-size:16px\">laptopcentral@bryant.edu<\/a><\/p>');\r\n      $.unblockUI();\r\n    }\r\n  }).error(function(error, status, header, config) {\r\n    // Doesn't seem to get here but just in case\r\n    $.unblockUI();\r\n    $('#appContent').append('<p class=\"no-classes\">An issue has occured.<\/br> Please contact Laptop Central<\/br><a href=\"mailto:laptopcentral@bryant.edu\" style=\"font-size:16px\">laptopcentral@bryant.edu<\/a><\/p>');\r\n  });\r\n  $scope.convertToDate = function(stringDate) {\r\n    var dateOut = new Date(stringDate);\r\n    dateOut.setDate(dateOut.getDate());\r\n    return dateOut;\r\n  };\r\n\r\n}",
-          "url": "https://my.bryant.edu/portal/class-cancellations-mobile.rss",
-          "datatemplate": "<style>\r\n  #branding {\r\n    display: none;\r\n  }\r\n  \r\n  .scrollable-content {\r\n    background: transparent !important;\r\n  }\r\n  \r\n  .regularFontColor {\r\n    color: #252729 !important;\r\n  }\r\n  \r\n  .lightFontColor {\r\n    color: #525252 !important;\r\n  }\r\n  \r\n  .regularFontSize {\r\n    font-size: 14px !important;\r\n  }\r\n  \r\n  .datetimeContainer {\r\n    padding: 0;\r\n    text-align: center;\r\n    margin-top: 10px;\r\n  }\r\n  \r\n  .no-classes {\r\n    text-align: center;\r\n    font-size: 30px;\r\n    font-weight: bold;\r\n    margin-top: 60px;\r\n    line-height: 32px;\r\n  }\r\n  \r\n  #today-date {\r\n    background-color: #bee5eb;\r\n    font-size: 25px;\r\n    padding: 5px 10px;\r\n    text-align: center;\r\n    display: block;\r\n  }\r\n<\/style>\r\n<div class=\"regularFontSize  regularFontColor\">\r\n  <div ng-repeat=\"f in feeds\" class=\"list-group-item\" ng-click=\"openFeed($index)\">\r\n\r\n    <div>\r\n      <div class=\"col-xs-12 col-md-12\">\r\n\r\n        <div style=\"font-size: 15px;margin-bottom: 5px;\">\r\n          {{f.title}}\r\n        <\/div>\r\n        <div style=\"font-size: 15px; margin-bottom: 5px\">\r\n          {{f.content}}\r\n        <\/div>\r\n        <!--<div class=\"lightFontColor\">\r\n          <i class=\"fa fa-clock-o\" aria-hidden=\"true\"><\/i><span ng-bind=\"getFeedTime(f)\" style=\"margin-left: 5px;\"><\/span>\r\n        <\/div>-->\r\n\r\n      <\/div>\r\n      <div style=\"clear:both;\"><\/div>\r\n    <\/div>\r\n\r\n  <\/div>\r\n<\/div>"
-        },
-        {
-          "pageid": "BryUCancelledClassesDetails",
-          "pageTemplate": "<div><\/div>",
-          "pageprocessor": "function pageprocessorBryUCancelledClassesDetails(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n    var data1 = $compile($(pagedef.datatemplate))($scope);\r\n    $(\"#appContent\").append(data1);\r\n    $scope.feedDetails = $rootScope.BryUCancelledClassesfeedDetails;\r\n    $scope.openWebPage = function(url) {\r\n        window.open(url, \"_blank\", \"location=no\");\r\n    }\r\n    $scope.trustHTML = function(html) {\r\n        var data = \"<div>\" + html + \"<\/div>\";\r\n        return $sce.trustAsHtml(data);\r\n    }\r\n}",
-          "datatemplate": "<style>\r\n    #branding {\r\n        display: none;\r\n    }\r\n\r\n    .scrollable-content {\r\n        background: #eaebec !important;\r\n    }\r\n\r\n    .regularFontColor {\r\n        color: #252729 !important;\r\n    }\r\n\r\n    .lightFontColor {\r\n        color: #525252 !important;\r\n    }\r\n\r\n    .regularFontSize {\r\n        font-size: 14px !important;\r\n    }\r\n\r\n    .datetimeContainer {\r\n        padding: 0;\r\n        text-align: center;\r\n        margin-top: 10px;\r\n    }\r\n\r\n    .titleHeading {\r\n        font-size: 16px;\r\n        font-weight: bold;\r\n    }\r\n\r\n    .highlightedBackgroundColor {\r\n        background: #dac229 !important;\r\n    }\r\n\r\n    .btn-primary {\r\n        color: white;\r\n        background-color: #dac229;\r\n        border-color: #dac229;\r\n        padding: 10px;\r\n        border-radius: 6px;\r\n    }\r\n\r\n    .btn-primary:hover {\r\n        background-color: #dac229;\r\n        border-color: #dac229;\r\n    }\r\n\r\n    .btn-primary:active {\r\n        background-color: #dac86b;\r\n        border-color: #dac86b;\r\n    }\r\n\r\n    .borderRadius4px {\r\n        border-radius: 4px;\r\n    }\r\n<\/style>\r\n<div class=\"regularFontColor regularFontColor\">\r\n    <div class=\"list-group\">\r\n        <div class=\"list-group-item\">\r\n            <div class=\"titleHeading\">{{feedDetails.title}}<\/div>\r\n            <div class=\"lightFontColor\"><i class=\"fa fa-clock-o\" aria-hidden=\"true\" style=\"margin-right: 5px;\"><\/i>{{feedDetails.pubDate}}\r\n            <\/div>\r\n\r\n        <\/div>\r\n        <div class=\"list-group-item\">\r\n            <p style=\"font-size:14px\" ng-bind-html=\"trustHTML(feedDetails.content)\"><\/p>\r\n            <br/>\r\n            <div class=\"btn btn-primary btn-block highlightedBackgroundColor\" ng-click=\"openWebPage(feedDetails.link);\">\r\n                Open Link\r\n            <\/div>\r\n        <\/div>\r\n\r\n    <\/div>\r\n\r\n\r\n<\/div>"
-        }
-      ]
-    },
-    {
-      "id": 73313,
-      "name": "VirginPulse",
-      "displayname": "Virgin Pulse",
-      "logo": "Bryant/VirginPulse.png",
-      "logourl": "Bryant/VirginPulse.png",
-      "description": "Virgin Pulse",
-      "appFeatureType": "Secure Apps",
-      "roles": "TESTINGROLE,EMPLOYEE,FACULTY",
-      "showInDock": false,
-      "showInHome": true,
-      "networkrequired": true,
-      "analytics": true,
-      "pages": 
-      [
-        {
-          "pageid": "VirginPulse",
-          "pageTemplate": "<div><\/div>",
-          "pageprocessor": "function pageprocessorVirginPulse(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n  \r\n  var plugins = cordova.require(\"cordova/plugin_list\").metadata;\r\n\r\n  if (typeof plugins['com.venkykowshik.startapp'] === \"undefined\") {\r\n\r\n    navigator.notification.alert(\"Please update your app to use this feature\", function() {\r\n      window.location.href = \"index.html#home\";\r\n      //$location.path(\"/home\");\r\n    }, \"Update required\", \"OK\");\r\n  } else {\r\n    if (window.device.platform == \"iOS\") {\r\n      var iosUri = pagedef.iosuri;\r\n      navigator.startApp.check(iosUri, function(message) { /* success */\r\n          navigator.startApp.start(iosUri, function(message) { /* success */\r\n              $location.path(\"/home\");\r\n              $.unblockUI();\r\n            },\r\n            function(error) { /* error */\r\n              console.log(error);\r\n            });\r\n        },\r\n        function(error) { /* error */\r\n          $scope.loadurl(pagedef.itunesurl);\r\n          $location.path(\"/home\");\r\n          $.unblockUI();\r\n        });\r\n    } else if (window.device.platform == \"Android\") {\r\n      var androidpackage = pagedef.androidpackage\r\n      navigator.startApp.check(androidpackage, function(message) { /* success */\r\n          navigator.startApp.start(androidpackage, function(message) { /* success */\r\n              $location.path(\"/home\");\r\n              $.unblockUI();\r\n            },\r\n            function(error) { /* error */\r\n              navigator.notification.alert(\"Your device isn't compatible with this version\");\r\n              $location.path(\"/home\");\r\n              $.unblockUI();\r\n            });\r\n        },\r\n        function(error) { /* error */\r\n          $scope.loadurl(pagedef.playstoreurl);\r\n          $location.path(\"/home\");\r\n          $.unblockUI();\r\n        });\r\n    } else {\r\n      apprise(\"This feature is not available on Emulator\", {\r\n        \"verify\": false,\r\n        \"textYes\": \"Ok\"\r\n      }, function(r) {});\r\n    }\r\n\r\n\r\n    $scope.loadurl = function(url) {\r\n      if (window.device) {\r\n        $.blockUI();\r\n      }\r\n      var iabRef = window.open(url, device.platform == \"Android\" ? \"_system\" : \"_blank\", \"location=no,hidden=yes\");\r\n      var hideBlockUi = function() {\r\n        iabRef.show();\r\n        $.unblockUI();\r\n      };\r\n      var iabClose = function(data) {\r\n        window.location.href = \"index.html#home\";\r\n        $.unblockUI();\r\n      };\r\n      iabRef.addEventListener(\"exit\", iabClose);\r\n      var loadStop = function(data) {\r\n        hideBlockUi();\r\n      };\r\n      iabRef.addEventListener(\"loadstop\", loadStop);\r\n    }\r\n  }\r\n}",
-          "androidpackage": "com.virginpulse.virginpulse",
-          "playstoreurl": "https://play.google.com/store/apps/details?id=com.virginpulse.virginpulse",
-          "iosuri": "virginpulseapp://",
-          "itunesurl": "https://itunes.apple.com/us/app/virgin-pulse/id793322895?mt=8"
-        }
-      ]
-    },
-    {
       "id": 100846,
       "name": "Outlook3",
       "displayname": "Outlook",
