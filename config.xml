@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id = "com.campusEAI.myBryant" version   = "4.0.3">
+        id = "com.campuseai.myBUMobile" version   = "4.0.4">
         <name>Bryant Mobile</name>
         <description>Bryant mobile App</description>
         <author href="http://kryptosmobile.com" email="info@kryptosmobile.com">Kryptos Mobile Team</author>
