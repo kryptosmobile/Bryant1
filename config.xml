@@ -118,7 +118,7 @@
             <param name="SENDER_ID" value="459115189650" />
         </gap:plugin>
         
-        <plugin spec="https://github.com/venkykowshik/startapp.git" source="git" />
+        <!--<plugin spec="https://github.com/venkykowshik/startapp.git" source="git" />-->
         <plugin spec="https://github.com/nchutchind/cordova-plugin-app-launcher.git" source="git" />
         
         <!--<gap:plugin name="cordova-plugin-app-launcher" version="0.3.1" />-->
