@@ -172,5 +172,9 @@
             </array>
         </gap:config-file>
         
+        <platform name="android">
+            <resource-file src="google-services.json" target="/google-services.json" />
+         </platform>
+        
         <!--<gap:config-file platform="ios" parent="CFBundleVersion"><string>1.0.1</string></gap:config-file>-->
     </widget>
