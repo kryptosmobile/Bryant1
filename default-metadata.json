@@ -1,5 +1,5 @@
 {
-  "version": 3304,
+  "version": 3314,
   "tenantid": "Bryant",
   "mobappid": 95,
   "appName": "mybryant",
@@ -41,6 +41,29 @@
           "pageTemplate": "<div><\/div>",
           "pageprocessor": "function pageprocessorBRYHEALTHPASS(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n  if (window.device) {\r\n    $.blockUI();\r\n  }\r\n  var iabRef;\r\n  if ($.jStorage.get('username') === null || $.jStorage.get('username') === \"\") {\r\n    iabRef = window.open(pagedef.url, \"_blank\", \"location=no,hidden=no,enableViewportScale=yes,clearcache=yes\");\r\n    window.location.href = \"index.html#home\";\r\n    var hideBlockUi = function() {\r\n      $.unblockUI();\r\n      iabRef.show();\r\n    };\r\n    var iabClose = function(data) {\r\n      $.unblockUI();\r\n      iabRef.removeEventListener(\"exit\", iabClose);\r\n      window.location.href = \"index.html#home\";\r\n    };\r\n    iabRef.addEventListener(\"exit\", iabClose);\r\n\r\n\r\n    var loadStop = function(data) {\r\n      //window.location.href = \"index.html#home\";\r\n      hideBlockUi();\r\n      iabRef.removeEventListener(\"loadstop\", loadStop);\r\n    };\r\n    iabRef.addEventListener(\"loadstop\", loadStop);\r\n  } else {\r\n    $rootScope.getAPI($rootScope.middlewareServerUrl + \"/services/student/bannergetuserpidm\", function(data) {\r\n      var pidm = data.getuserpidm[0].SPRIDEN_PIDM;\r\n      iabRef = window.open(pagedef.url + \"?p_mobile_id=\" + pidm, \"_blank\", \"location=no,hidden=no,enableViewportScale=yes\");\r\n      window.location.href = \"index.html#home\";\r\n    });\r\n  }\r\n\r\n\r\n\r\n}",
           "url": "https://ssb-prod.bryantec.bryant.edu/PROD/bry_health_pass.p_health_form"
+        }
+      ]
+    },
+    {
+      "id": 168432,
+      "name": "BRYLaptopCentralApp",
+      "displayname": "Laptop Central",
+      "logo": "Bryant/BRYLaptopCentralApp.png",
+      "logourl": "Bryant/BRYLaptopCentralApp.png",
+      "description": "BRYLaptopCentralApp",
+      "appFeatureType": "Secure Apps",
+      "roles": "STUDENT,TESTINGROLE",
+      "showInDock": false,
+      "showInHome": false,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "BRYLaptopCentralApp",
+          "pageTemplate": "<div><\/div>",
+          "pageprocessor": "function pageprocessorBRYLaptopCentralApp(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n  var data1 = $compile($(pagedef.datatemplate))($scope);\r\n  $(\"#appContent\").append(data1);\r\n  $scope.selfHelp = function() {\r\n    var iabRef = window.open(\"https://is.bryant.edu/get-started/students\", \"_system\", \"location=yes,hidden=yes;enableViewportScale=yes\");\r\n    var hideBlockUi = function() {\r\n      iabRef.show();\r\n      $.unblockUI();\r\n    };\r\n    var iabClose = function(data) {\r\n      window.location.href = \"index.html#home\";\r\n    };\r\n    iabRef.addEventListener(\"exit\", iabClose);\r\n    var loadStop = function(data) {\r\n      hideBlockUi();\r\n    };\r\n    iabRef.addEventListener(\"loadstop\", loadStop);\r\n  }\r\n  $scope.bookService = function() {\r\n    var iabRef = window.open(\"https://bookme.bryant.edu/appointments/laptopcentral\", \"_system\", \"location=yes,hidden=yes;enableViewportScale=yes\");\r\n    var hideBlockUi = function() {\r\n      iabRef.show();\r\n      $.unblockUI();\r\n    };\r\n    var iabClose = function(data) {\r\n      window.location.href = \"index.html#home\";\r\n    };\r\n    iabRef.addEventListener(\"exit\", iabClose);\r\n    var loadStop = function(data) {\r\n      hideBlockUi();\r\n    };\r\n    iabRef.addEventListener(\"loadstop\", loadStop);\r\n  }\r\n}",
+          "datatemplate": "<h2 style=\"color: #622d50; text-align: center; height: auto !important; padding-top: 30px !important; padding: 20px;\">Laptop Central<\/h2>\r\n<div style=\"margin: 20px;\">\r\n  <a class=\"counceling-lgi list-group-item active\" ng-click=\"selfHelp();\">\r\n       Technology Self-Help<span class=\"pull-right fa fa-chevron-right\"><\/span>\r\n    <\/a>\r\n  <a class=\"list-group-item counceling-lgi active\" href=\"mailto:laptopcentral@bryant.edu\">\r\n        Email Us<span class=\"pull-right fa fa-chevron-right\"><\/span>\r\n    <\/a>\r\n  <a class=\"list-group-item counceling-lgi active\" ng-click=\"bookService();\">\r\n    Book a Service Appoinment <span class=\"pull-right fa fa-chevron-right\"><\/span>\r\n    <\/a>\r\n<\/div>\r\n<style>\r\n  .app-content {\r\n    margin-top: -11px !important;\r\n  }\r\n  \r\n  .cservices {\r\n    /*height: 110px;\r\n    padding-top: 10px;\r\n     background: url(https://www.bryant.edu/sites/web/files/2018-07/shallow-banner-counseling-services-1400x270.jpg);\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n    background-position: center;*/\r\n  }\r\n  \r\n  .counceling-lgi {\r\n    background: #9CD4D4 !important;\r\n    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;\r\n    margin-bottom: 10px !important;\r\n    font-size: 16px !important;\r\n  }\r\n<\/style>"
         }
       ]
     },
@@ -614,7 +637,7 @@
           "pageid": "StudentLife11",
           "pageTemplate": "<div><\/div>",
           "pageprocessor": "function pageprocessorStudentLife11(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {var appnames = pagedef.appnames.split(\",\");var results = [];for(var i=0;i<appnames.length;i++) {for(var j=0;j<$rootScope.apps.length;j++) {if($rootScope.apps[j].displayname == appnames[i]) {results.push($rootScope.apps[j]);  }}}$scope.groupapps = results;var data1 = $compile($(pagedef.datatemplate))($scope);$(\"#appContent\").append(data1);}",
-          "appnames": "Get Funds/Food,Dining,Career Services,Library,RIPTA,WJMF Radio,Engaged,SalmoSeats,BryRent,BryantTV,Student Schedule,Fin Aid,Bryant Career Connection,Laundry,BTA,Commencement",
+          "appnames": "Get Funds/Food,Dining,Laptop Central,Career Services,Library,RIPTA,WJMF Radio,Engaged,SalmoSeats,BryRent,BryantTV,Student Schedule,Fin Aid,Bryant Career Connection,Laundry,BTA,Commencement",
           "datatemplate": "<div class=\"container\" style=\"padding-top:20px;\">\r\n  <div class=\"col-xs-4 col-sm-1 col-md-6\" ng-repeat=\"app in groupapps\">\r\n    <a href=\"#app/{{app.name}}/{{app.name}}\" class=\"thumbnail bry-app-grouplet\" style=\"background:transparent;border:none;color:white;\"><img id=\"logo-{{app.name}}\" src=\"{{app.logo}}\" alt=\"...\" class=\"icon\" />\r\n      <div style=\"text-align:center;\">{{app.displayname}}<\/div>\r\n    <\/a>\r\n  <\/div>\r\n<\/div>"
         }
       ]
